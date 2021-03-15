@@ -1,0 +1,15 @@
+#notesContainer {
+    display: table-cell;
+}
+
+#addNote {
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 25%;
+}
