@@ -3,7 +3,6 @@ import Moment from 'react-moment';
 import './notes.css';
 import {Link} from 'react-router-dom';
 import NotesContext from './NotesContext';
-import {Button} from "react-bulma-components";
 
 export default class Notes extends Component {
     static contextType = NotesContext;
@@ -24,27 +23,15 @@ export default class Notes extends Component {
                     </Moment>
                 </div>
 
-                <Button
-                    // renderAs="div"
+                <div
                     id="delete"
-                    color="black"
-                    size="small"
                     onClick={() => {
                     this
                         .context
                         .handleDelete(id)
-                }}
-               
-                >
-                    Delete Note test test test
-                </Button>
-                {/* <div
-                    id="delete"
-                    onClick={() => {
-                    this.context.handleDelete(id)
                 }}>
                     Delete Note
-                </div> */}
+                </div>
 
             </div>
         )
