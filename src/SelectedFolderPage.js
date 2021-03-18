@@ -5,7 +5,7 @@ import Notes from './Notes';
 
 export default class SelectedFolderPage extends Component {
     static contextType = NotesContext;
-    render() {
+    render() {        
         const renderNotes = this
             .context
             .notes
