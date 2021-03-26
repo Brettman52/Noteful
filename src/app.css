@@ -8,3 +8,7 @@
     display: table-cell;
     vertical-align: top;
 } */
+
+#mainContent {
+    height: 100vh;
+}
