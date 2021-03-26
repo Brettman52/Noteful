@@ -1,22 +1,22 @@
-header {
+/* header {
     position: absolute;
     font-size: 40px;
     font-family: 'Nanum Gothic', sans-serif;
     top: 40%;
     left: 25%;
 
-}
+} */
 
-#headerContent {
+/* #headerContent {
     border-bottom: 2px solid black;
     height: 20vh;
     position: relative;
-}
+} */
 
-a {
+/* a {
     text-decoration: none;
     color: black;
 }
 a:visited {
     color: black;
-}
+} */
