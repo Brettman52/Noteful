@@ -134,7 +134,7 @@ export default class AddNote extends Component {
             }, i) => <option value={id} key={id}>{name}</option>);
 
         return (
-            <main>
+            <main id="mainAddNoteContainer">
                 <h1 className='noteForm-title'>Add Note</h1>
                 <div className='noteFormContent'>
                     <form className='addNote-form' onSubmit={this.handleSubmit}>

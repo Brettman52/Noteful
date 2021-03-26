@@ -1,4 +1,4 @@
-/* .note {
+.note {
     margin: 10px;
     border: 1px solid black;
     height: 15vh;
@@ -6,19 +6,19 @@
     position: relative;
     min-width: 900px;
     min-height: 100px;
-} */
+}
 
-/* .noteName {
+.noteName {
     font-size: 25px;
-} */
+}
 
-/* #date {
+#date {
     position: absolute;
     bottom: 0;
     margin-bottom: 20px;
-} */
+}
 
-/* #delete {
+#delete {
     position: absolute;
     right: 75px;
     bottom: 0;
@@ -26,4 +26,4 @@
     border: 1px solid black;
     padding: 10px;
     cursor: pointer;
-} */
+}

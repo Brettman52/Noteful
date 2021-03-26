@@ -13,7 +13,7 @@ import styled from 'styled-components';
 
 const MainContent = styled.div `
     background: #BAC7BE;
-   
+    
   
 `;
 

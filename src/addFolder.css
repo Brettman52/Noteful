@@ -1,6 +1,6 @@
 .folderFormContent {
     height: 25vh;
-    width: 65%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -42,5 +42,9 @@
 
 .addFolderInput {
     height: 20px;
+}
+
+#mainFolderContainer {
+    height: 80vh;
 }
 
