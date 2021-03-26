@@ -62,7 +62,7 @@ export default class AddFolder extends Component {
 
     render() {
         return (
-            <main>
+            <main id="addFolderContent">
                 <h1 className='folderForm-title'>Add Folder</h1>
                 <div className='folderFormContent'>
                     <form className='addFolder-form' onSubmit={this.handleSubmit}>

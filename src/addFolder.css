@@ -43,3 +43,7 @@
 .addFolderInput {
     height: 20px;
 }
+
+#addFolderContent {
+    height: 80vh;
+}
