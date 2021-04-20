@@ -128,17 +128,8 @@ export default class AddFolder extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
-            <main id="addFolderContent">
-                <h1 className='folderForm-title'>Add Folder</h1>
-                <div className='folderFormContent'>
-                    <form className='addFolder-form' onSubmit={this.handleSubmit}>
-                        <label className='addFolderLabel' htmlFor='title'>
-                            Folder Name
-                        </label>
-                        <input
-                            className="addFolderInput"
-=======
+
+
             <StyledMain>
                 <StyledHeader>Add Folder</StyledHeader>
                 <StyledFormContent>
@@ -146,7 +137,6 @@ export default class AddFolder extends Component {
                         <TextField
                             label="Folder Name"
                             variant="filled"
->>>>>>> style
                             type="text"
                             name="title"
                             onChange={e => this.updateFolderName(e.target.value)}
