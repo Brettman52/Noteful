@@ -3,18 +3,30 @@ import Folder from './Folder';
 import NotesContext from './NotesContext';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
+import Card from '@material-ui/core/Card';
+import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
 
-const AddFolder = styled.div`
-    background: palevioletred;
-    color: papayawhip;
+const Wrap = styled.div `
+    .active > .folder {
+    background-color: #284b63;
+    }
+`;
+
+const AddFolder = styled(Card)`
+&& {
+    background: #353535;
+    color: black;
     margin-top: 30px;
     padding: 20px;
-    text-align: center;
     border: 1px solid black;
     margin-left: 15px;
     margin-right: 15px;
     list-style-type: none;
     cursor: pointer;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
 `;
 
 export default class FolderList extends Component {
@@ -25,17 +37,18 @@ export default class FolderList extends Component {
             .folders
             .map(({id, name}) => <Folder key={id} name={name} id={id}/>);
         return (
-            <div id='folderListContent'>
-                <div id='folderContainter'>
-                    {folder}
-                    <Link to='/add-folder'>
-                        <AddFolder>
-                            Add folder
-                        </AddFolder>
-                        {/* <div id='addFolder'>Add folder</div> */}
-                    </Link>
-                </div>
-            </div>
+            <Wrap>
+                {folder}
+                <Link to='/add-folder' style={{textDecoration: 'none'}}>
+                    <AddFolder>
+                        <CreateNewFolderIcon style={{color: 'white'}}/>
+                        <span
+                            style={{
+                            marginLeft: "5px", color: "white"
+                        }}>Add folder</span>
+                    </AddFolder>
+                </Link>
+            </Wrap>
         )
     }
 }

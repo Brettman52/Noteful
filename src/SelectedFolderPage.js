@@ -2,24 +2,56 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import NotesContext from './NotesContext';
 import Notes from './Notes';
+import styled from 'styled-components';
+import Card from '@material-ui/core/Card';
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
+
+const StyledNotesContainer = styled.main `
+    display: table-cell;
+`;
+
+const StyledAddNote = styled(Card)`
+&& {
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #353535;
+    color: white;
+}
+`;
 
 export default class SelectedFolderPage extends Component {
     static contextType = NotesContext;
-    render() {        
+    render() {
         const renderNotes = this
             .context
             .notes
             .filter(note => note.folderId === this.props.match.params.folderId)
-            .map(({id, name, modified}) => <Notes key={id} id={id} name={name} modified={modified}/>)  
+            .map(({id, name, modified}) => <Notes key={id} id={id} name={name} modified={modified}/>)
         return (
-            <main id='notesContainer'>
+            <StyledNotesContainer>
                 <div id="notesList">
                     {renderNotes}
                 </div>
                 <Link to='/add-note'>
-                <div id='addNote'>Add note</div>
-            </Link>
-            </main>
+                    <StyledAddNote>
+                        <NoteAddIcon/>
+                        <span
+                            style={{
+                            marginLeft: "3px"
+                        }}>Add note</span>
+                    </StyledAddNote>
+                </Link>
+            </StyledNotesContainer>
         )
     }
 }

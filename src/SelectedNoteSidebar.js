@@ -1,8 +1,25 @@
 import React, {Component} from 'react';
 import GoBackButton from './GoBackButton';
 import NotesContext from './NotesContext';
-import './selectedNoteSidebar.css';
+import styled from 'styled-components';
 
+const StyledSelectedNav = styled.div `
+    display: table-cell;
+    height: 80vh;
+    width: 25%;
+    overflow: auto;
+    max-width: 25%;
+`;
+
+const StyledSelectedFolder = styled.h2 `
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 25px;
+    font-weight: normal;
+`;
 export default class SelectedNoteSidebar extends Component {
     static contextType = NotesContext;
     render() {
@@ -11,16 +28,18 @@ export default class SelectedNoteSidebar extends Component {
             .notes
             .find(note => note.id === this.props.match.params.noteId);
         const folder = this
-                .context
-                .folders
-                .find(folder => folder.id === selectedNote.folderId)
+            .context
+            .folders
+            .find(folder => folder.id === selectedNote.folderId)
         return (
-            <div id='selectedNoteSidebarContent'>
+            <StyledSelectedNav>
                 <nav>
                     <GoBackButton/>
                 </nav>
-                <h2 id="selectedFolderName">{folder.name}</h2>
-            </div>
+                <StyledSelectedFolder>
+                    {folder.name}
+                </StyledSelectedFolder>
+            </StyledSelectedNav>
         )
     }
 }

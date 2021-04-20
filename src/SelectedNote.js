@@ -1,8 +1,54 @@
 import React, {Component} from 'react';
 import Moment from 'react-moment';
 import NotesContext from './NotesContext';
-import './selectedNote.css';
+import styled from 'styled-components';
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
+import DeleteIcon from '@material-ui/icons/Delete';
 
+const StyledNote = styled(Paper)`
+&& {
+    margin-top: 10px;
+    border: 1px solid black;
+    height: 15vh;
+    padding: 10px;
+    position: relative;
+    min-width: 600px;
+    max-width: 1050px;
+    min-height: 100px;
+}
+`;
+
+const StyledNoteName = styled.h2 `
+    font-size: 25px;
+`;
+
+const StyledDate = styled.div `
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+`;
+
+const StyledDeleteButton = styled(Button)`
+&& {
+    background: #BAC7BE;
+    color: black;
+    position: absolute;
+    right: 75px;
+    bottom: 0;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: black;
+        }
+    }
+    `;
+const StyledNotesDetails = styled.div `
+    margin-top: 50px;
+    max-width: 900px;
+`;
 export default class SelectedNote extends Component {
     static contextType = NotesContext;
     render() {
@@ -10,7 +56,7 @@ export default class SelectedNote extends Component {
             .context
             .notes
             .find(note => note.id === this.props.match.params.noteId);
-            
+
         const {name, modified, content, id} = selectedNote;
 
         let noteDetails = content
@@ -19,17 +65,18 @@ export default class SelectedNote extends Component {
 
         return (
             <main>
-                <div className="note">
-                    <h2 className="noteName">
+                <StyledNote elevation={3}>
+                    <StyledNoteName>
                         {name}
-                    </h2>
-                    <div id="date">
+                    </StyledNoteName>
+                    <StyledDate>
                         Date modified on&nbsp;
                         <Moment format="ll">
                             {modified}
                         </Moment>
-                    </div>
-                    <div
+                    </StyledDate>
+                    <StyledDeleteButton
+                        startIcon={< DeleteIcon />}
                         id="delete"
                         onClick={() => {
                         this
@@ -40,11 +87,12 @@ export default class SelectedNote extends Component {
                             .history
                             .push('/')
                     }}>
-                        Delete Note</div>
-                </div>
-                <div className="noteDetails">
+                        Discard
+                    </StyledDeleteButton>
+                </StyledNote>
+                <StyledNotesDetails>
                     {noteDetails}
-                </div>
+                </StyledNotesDetails>
             </main>
         )
     }

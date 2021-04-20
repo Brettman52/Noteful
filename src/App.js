@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import Header from './Header';
-import './app.css';
 import {Route, Switch} from 'react-router-dom';
-import Homepage, { Main } from './Homepage';
+import Homepage from './Homepage';
 import FolderPage from './FolderPage';
 import NotePage from './NotePage';
 import NotesContext from './NotesContext';
@@ -11,13 +10,13 @@ import AddNote from './AddNote';
 import {noteData} from "./data";
 import styled from 'styled-components';
 
-const MainContent = styled.div `
-    background: #BAC7BE;
-    
-  
+const MainContent = styled.main `
+    background: #ffffff;
+
+    & a:vistited {
+        color: black;
+    }
 `;
-
-
 
 export default class App extends Component {
 
@@ -62,7 +61,6 @@ export default class App extends Component {
         }
         return (
             <MainContent>
-           {/* <div id='mainContent'>  */}
                 <Header/>
                 <NotesContext.Provider value={contextValue}>
                     <Switch>
@@ -74,7 +72,6 @@ export default class App extends Component {
                     </Switch>
                 </NotesContext.Provider>
             </MainContent>
-        //    </div>
         )
     }
 }

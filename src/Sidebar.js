@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './sidebar.css';
 import FolderList from './FolderList';
 import styled from 'styled-components';
 
@@ -12,6 +11,7 @@ export default class Sidebar extends Component {
         overflow: auto;
         max-width: 25%;
         `;
+        
         return ( 
         <> 
         <SidebarContent>
@@ -19,10 +19,7 @@ export default class Sidebar extends Component {
                 <FolderList/>
             </nav>
         </SidebarContent>
-            {/* <nav>
-                    <FolderList/>
-                </nav> */
-        } </>
+        </>
         )
     }
 }

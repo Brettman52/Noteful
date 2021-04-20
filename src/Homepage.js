@@ -14,12 +14,10 @@ export default class Homepage extends Component {
     render() {
         return (
             <div>
-                {/* <main className="folders-notes"> */}
                 <Main>
                     <Sidebar/>
                     <NotesList/>
                 </Main>
-                {/* </main> */}
             </div>
         )
     }

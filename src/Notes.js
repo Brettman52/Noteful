@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import Moment from 'react-moment';
-import './notes.css';
 import {Link} from 'react-router-dom';
 import NotesContext from './NotesContext';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Paper from '@material-ui/core/Paper';
 
 const DeleteButton = styled(Button)`
 && {
-background: palevioletred;
-color: papayawhip;
+background: #BAC7BE;
+color: black;
 position: absolute;
 right: 75px;
 bottom: 0;
@@ -19,12 +19,14 @@ border: 1px solid black;
 padding: 10px;
 cursor: pointer;
 &:hover {
-    background-color: black;
+    background-color: #284b63;
+    color: white;
     }
 }
 `;
 
-const StyledNote = styled.div ` 
+const StyledNote = styled(Paper)` 
+&& {
     margin: 10px;
     border: 1px solid black;
     height: 15vh;
@@ -32,10 +34,14 @@ const StyledNote = styled.div `
     position: relative;
     min-width: 900px;
     min-height: 100px;
+    background: #ffffff;
+
+}
 `;
 
 const NoteName = styled.h2 ` 
     font-size: 25px;
+    color: black;
 `;
 
 const Date = styled.div `
@@ -51,34 +57,19 @@ export default class Notes extends Component {
         const {name, modified, id} = this.props;
 
         return (
-            // <div className="note">
-            <StyledNote>
-                <Link to={`/note/${id}`}>
-                    {/* <h2 className="noteName"> */}
+            <StyledNote elevation={3}>
+                <Link to={`/note/${id}`} style={{textDecoration: 'none'}}>
                     <NoteName>
                         {name}
                     </NoteName>
-                    {/* </h2> */}
                 </Link>
 
-                {/* <div id="date"> */}
                 <Date>
                     Date modified on&nbsp;
                     <Moment format="ll">
                         {modified}
                     </Moment>
                 </Date>
-                {/* </div> */}
-
-                {/* <button
-                    id="delete"
-                    onClick={() => {
-                    this
-                        .context
-                        .handleDelete(id)
-                }}>
-                    Delete Note
-                </button> */}
 
                 <DeleteButton
                     variant="contained"
@@ -91,8 +82,8 @@ export default class Notes extends Component {
                 }}>
                     Discard
                 </DeleteButton>
-                </StyledNote>
-            // </div>
+
+            </StyledNote>
         )
     }
 }
