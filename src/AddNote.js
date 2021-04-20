@@ -1,8 +1,106 @@
 import React, {Component} from 'react'
-import "./addNote.css";
 import NotesContext from './NotesContext';
 import moment from 'moment';
 import ValidationError from './ValidationError';
+import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+
+
+const StyledAddNoteContainer = styled.main `
+    height: 100vh;
+`;
+
+const StyledNoteFormTitle = styled.h1 `
+    text-align: center;
+    margin-top: 5%;
+`;
+
+const StyledNoteFormContent = styled.div `
+    height: 60vh;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+`;
+
+const StyledNoteForm = styled.form `
+&& {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: solid black 2px;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: -3px 5px 5px grey;
+}
+`;
+
+const StyledNameInput = styled(TextField) `
+&& {
+    height: 20px;
+    margin-bottom: 50px;
+}
+`;
+
+const StyledDetailsLabel = styled.label `
+    margin-top: 18px;
+    margin-bottom: 10px;
+    font-size: 16px;
+`;
+
+const StyledTextArea = styled.textarea `
+&& {
+    height: 200px;
+    font-size: 16px;
+}
+`;
+
+const StyledSelectLabel = styled.label `
+&& {
+ 
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+`;
+
+const StyledSelect = styled(Select) `
+&& {
+    margin-bottom: 20px;
+    font-size: 16px;
+    padding: 1px;
+    width: 50%;
+    height: 30px;
+}
+`;
+
+const StyledButtonContainer = styled.div `
+    position: absolute;
+    bottom: 0;
+    right: 1%;
+    margin-bottom: 5px;
+`;
+
+const StyledCancelButton = styled(Button) `
+&& {
+    margin: 2px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+`;
+
+const StyledSubmitButton = styled(Button) `
+&& {
+    margin: 2px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+`;
 
 export default class AddNote extends Component {
 
@@ -116,69 +214,69 @@ export default class AddNote extends Component {
         }
     }
 
-    validateFieldsForSaveButton = () => {
-        if (this.state.name.value.length < 3 || this.state.content.value.length < 1 || !this.state.folderId.touched || this.state.folderId.value === "Select a folder") {
-            return true
-        } else {
-            return false
-        }
-    }
-
     render() {
-        const folderOptions = this
+            const folderOptions = this
             .context
             .folders
             .map(({
                 name,
                 id
-            }, i) => <option value={id} key={id}>{name}</option>);
+            }, i) => <MenuItem value={id} key={id}>{name}</MenuItem>);
 
         return (
-            <main>
-                <h1 className='noteForm-title'>Add Note</h1>
-                <div className='noteFormContent'>
-                    <form className='addNote-form' onSubmit={this.handleSubmit}>
-                        <label className='addNoteLabel' htmlFor='title'>
-                            Note Name
-                        </label>
-                        <input
-                            className="addNoteInput"
+            <StyledAddNoteContainer>
+               <StyledNoteFormTitle>Add Note</StyledNoteFormTitle>
+            
+                <StyledNoteFormContent>
+                    <StyledNoteForm onSubmit={this.handleSubmit}>
+                        
+                        <StyledNameInput 
                             type="text"
-                            id="title"
-                            name="title"
+                            name="noteName"
+                            label="Note Name"
+                            variant="filled"
                             required
-                            onChange={e => this.updateName(e.target.value)}/> {this.state.name.touched && (<ValidationError message={this.validateNoteName()}/>)}
-                        <label className='addNoteLabel' htmlFor='details'>
+                            onChange={e => this.updateName(e.target.value)}
+                        />
+                      {this.state.name.touched && (<ValidationError message={this.validateNoteName()}/>)}
+                        <StyledDetailsLabel htmlFor="details">
                             Note Details
-                        </label>
-                        <textarea
-                            className="addNoteTextArea"
+                        </StyledDetailsLabel>
+                        <StyledTextArea 
                             type="textarea"
-                            id="details"
                             name="details"
                             onChange={e => this.updateContent(e.target.value)}
-                            required/> {this.state.content.touched && (<ValidationError message={this.validateNoteDetails()}/>)}
-                        <label className="folderSelectLabel" htmlFor="folderSelect">
-                            Folder
-                        </label>
-                        <select
-                            className="folderSelect"
-                            onChange={e => this.updateFolderId(e.target.value)}>
-                            <option defaultValue="Select a folder">Select a folder</option>
+                            required
+                        />
+                        {this.state.content.touched && (<ValidationError message={this.validateNoteDetails()}/>)}
+                        <StyledSelectLabel>Folder</StyledSelectLabel>
+                        <StyledSelect variant="outlined" onChange={e => this.updateFolderId(e.target.value)} defaultValue={""}>
                             {folderOptions}
-                        </select>
+                        </StyledSelect>
+                        
                         {(this.state.folderId.touched && this.state.folderId.value === "Select a folder") && (<ValidationError message={this.validateFolderName()}/>)}
 
-                        <div className="buttonContainer">
-                            <button className="addNoteFormButton" onClick={this.props.history.goBack}>Cancel</button>
-                            <button
-                                className="addNoteFormButton"
+                        <StyledButtonContainer>
+                            <StyledCancelButton 
+                                onClick={this.props.history.goBack}
+                                variant="contained"
+                                size="small"
+                                >
+                                    Cancel
+                            </StyledCancelButton>
+                            <StyledSubmitButton 
                                 type="submit"
-                                disabled={this.validateFieldsForSaveButton()}>Save</button>
-                        </div>
-                    </form>
-                </div>
-            </main>
+                                variant="contained"
+                                size="small"
+                                disabled={this.state.name.value.length < 3 || this.state.content.value.length < 1 || !this.state.folderId.touched}
+                            >
+                                Save
+                            </StyledSubmitButton>
+                        </StyledButtonContainer>
+                        
+                    </StyledNoteForm>
+                </StyledNoteFormContent>
+            </StyledAddNoteContainer>
         )
     }
 }

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Header from './Header';
-import './app.css';
 import {Route, Switch} from 'react-router-dom';
 import Homepage from './Homepage';
 import FolderPage from './FolderPage';
@@ -9,7 +8,15 @@ import NotesContext from './NotesContext';
 import AddFolder from './AddFolder';
 import AddNote from './AddNote';
 import {noteData} from "./data";
+import styled from 'styled-components';
 
+const MainContent = styled.main `
+    background: #ffffff;
+
+    & a:vistited {
+        color: black;
+    }
+`;
 
 export default class App extends Component {
 
@@ -53,7 +60,7 @@ export default class App extends Component {
             handleAddFolder: this.addFolder
         }
         return (
-            <div id='mainContent'>
+            <MainContent>
                 <Header/>
                 <NotesContext.Provider value={contextValue}>
                     <Switch>
@@ -64,7 +71,7 @@ export default class App extends Component {
                         <Route exact path='/' component={Homepage}/>
                     </Switch>
                 </NotesContext.Provider>
-            </div>
+            </MainContent>
         )
     }
 }
